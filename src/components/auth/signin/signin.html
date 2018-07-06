@@ -1,6 +1,6 @@
 <div>
-  <div class="login-form">
-    <form [formGroup]="loginForm">
+  <div class="signin-form">
+    <form [formGroup]="signinForm">
       <ion-item-group>
         <ion-item>
           <ion-input type="email" formControlName="username" placeholder="Email"></ion-input>
@@ -11,8 +11,11 @@
       </ion-item-group>
       <div class="wrap">
         <ion-row justify-content-center style="margin-top:40px;">
-          <button login-animation (click)="onLogin($event)" ion-button primary [disabled]="loginForm.invalid">
+          <button  type="button" login-animation (click)="onLogin($event)" ion-button primary [disabled]="signinForm.invalid">
             login
+          </button>
+          <button  type="button" login-animation (click)="signUp()" ion-button primary>
+            Signup
           </button>
         </ion-row>
         <ion-row justify-content-center>

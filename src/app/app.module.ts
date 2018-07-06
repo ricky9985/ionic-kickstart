@@ -9,6 +9,7 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {SigninComponent} from "../components/auth/signin/signin";
 import {SignupComponent} from "../components/auth/signup/signup";
+import {PinComponent} from "../components/auth/pin/pin";
 import {AuthProvider} from '../providers/auth/auth';
 
 @NgModule({
@@ -16,7 +17,8 @@ import {AuthProvider} from '../providers/auth/auth';
     MyApp,
     AuthPage,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    PinComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,8 @@ import {AuthProvider} from '../providers/auth/auth';
     MyApp,
     AuthPage,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    PinComponent
   ],
   providers: [
     StatusBar,

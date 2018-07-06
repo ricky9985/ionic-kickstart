@@ -2,11 +2,17 @@ import {
   Component,
   ViewChild,
   ViewContainerRef,
-  ComponentFactoryResolver
+  ComponentFactoryResolver,
+  ComponentRef
 } from '@angular/core';
-import { NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import {SigninComponent} from "../../components/auth/signin/signin";
 import {SignupComponent} from "../../components/auth/signup/signup";
+
+const AuthMethods: Object = {
+  signin: SigninComponent,
+  signup: SignupComponent
+};
 
 // @IonicPage()
 @Component({
@@ -15,8 +21,9 @@ import {SignupComponent} from "../../components/auth/signup/signup";
 })
 export class AuthPage {
   title: string;
-  componentRef: any;
+  componentRef: ComponentRef<any>;
   @ViewChild('messagecontainer', {read: ViewContainerRef}) entry: ViewContainerRef;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private componentFactoryResolver: ComponentFactoryResolver) {
     this.title = "auth";
@@ -24,27 +31,33 @@ export class AuthPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AuthPage');
-    this.loadComponent();
+    this.loadComponent("signin");
   }
 
-  loadComponent() {
+  loadComponent(value) {
+    console.log("loading component: ", value);
     this.entry.clear();
-    const factory = this.componentFactoryResolver.resolveComponentFactory(SigninComponent);
+    const factory = this.componentFactoryResolver.resolveComponentFactory(AuthMethods[value]);
     this.componentRef = this.entry.createComponent(factory);
-    this.componentRef.instance.text = "I am loaded dynamically";
-    // this.currentAdIndex = (this.currentAdIndex + 1) % this.ads.length;
-    // let adItem = this.ads[this.currentAdIndex];
-    //
-    // let componentFactory = this.componentFactoryResolver.resolveComponentFactory(adItem.component);
-    //
-    // let viewContainerRef = this.adHost.viewContainerRef;
-    // viewContainerRef.clear();
-    //
-    // let componentRef = viewContainerRef.createComponent(componentFactory);
-    // (<AdComponent>componentRef.instance).data = adItem.data;
-    // let componentFactory = this.componentFactoryResolver.resolveComponentFactory(SigninComponent);
-
+    console.log(this.componentRef);
+    this.subscribeChange();
   }
 
+  subscribeChange() {
+    this.componentRef.instance.component.subscribe(value => {
+      console.log(value);
+      this.destroyComponent();
+      this.loadComponent(value);
+    })
+  }
 
+  destroyComponent() {
+    this.componentRef.instance.component.unsubscribe();
+    this.componentRef.destroy();
+  }
+
+  changeComponent(ev) {
+    console.log("hello");
+    console.log(ev);
+  }
 }

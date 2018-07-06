@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -6,27 +6,30 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   templateUrl: 'signin.html'
 })
 export class SigninComponent {
-  @Input() text: string;
-  loginForm: FormGroup;
+  @Output() component = new EventEmitter();
+  signinForm: FormGroup;
   res: any = {
     username: ''
   };
 
   constructor(private fb: FormBuilder) {
     console.log('Hello SigninComponent Component');
-    // this.text = 'Hello World';
     this.initLoginForm();
   }
 
   initLoginForm() {
-    this.loginForm = this.fb.group({
+    this.signinForm = this.fb.group({
       username: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     })
   }
 
-  onLogin(ev){
+  onLogin(ev) {
     console.log("logging in");
   }
 
+  signUp() {
+    console.log("signup clicked");
+    this.component.emit("signup");
+  }
 }
