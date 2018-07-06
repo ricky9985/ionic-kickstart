@@ -1,0 +1,32 @@
+<div>
+  <div class="login-form">
+    <form [formGroup]="loginForm">
+      <ion-item-group>
+        <ion-item>
+          <ion-input type="email" formControlName="username" placeholder="Email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type=password formControlName="password" placeholder="Password"></ion-input>
+        </ion-item>
+      </ion-item-group>
+      <div class="wrap">
+        <ion-row justify-content-center style="margin-top:40px;">
+          <button login-animation (click)="onLogin($event)" ion-button primary [disabled]="loginForm.invalid">
+            login
+          </button>
+        </ion-row>
+        <ion-row justify-content-center>
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-row>
+        <ion-row justify-content-center>
+          <svg width="66px" height="66px">
+          </svg>
+        </ion-row>
+        <ion-row text-center ion-text color="dark-text" *ngIf="res.username!==''" class="username">
+          <ion-label>Hi {{res.username}}</ion-label>
+        </ion-row>
+      </div>
+      <div class="page"></div>
+    </form>
+  </div>
+</div>
