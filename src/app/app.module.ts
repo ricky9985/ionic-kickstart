@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
+import {IonicStorageModule} from "@ionic/storage";
 
 import {MyApp} from './app.component';
 import {AuthPage} from "../pages/auth/auth";
@@ -21,6 +22,10 @@ import {AuthProvider} from '../providers/auth/auth';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot({
+      name : '_localStorage',
+      driverOrder: ['sqlite', 'indexeddb', 'websql']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
