@@ -1,8 +1,13 @@
 Project Template with following auth flows:
+
 *Signin
+
 *Signup
+
 *PinSet
+
 *PinLogin
+
 *Environment setup
 
 
