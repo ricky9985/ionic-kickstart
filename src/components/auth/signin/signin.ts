@@ -1,13 +1,17 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, Input, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthProvider} from '../../../providers/auth/auth';
+import {Subject} from "rxjs/Subject";
 
 @Component({
   selector: 'signin',
   templateUrl: 'signin.html'
 })
 export class SigninComponent {
-  @Output() component = new EventEmitter();
+  @Output() component =  new Subject();
+  @Output() nextPage =  new Subject();
+  @Input() data: boolean;
+
   signinForm: FormGroup;
   res: any = {
     username: ''
@@ -37,6 +41,6 @@ export class SigninComponent {
 
   switchToSignUp() {
     console.log("signup clicked");
-    this.component.emit("signup");
+    this.component.next("signup");
   }
 }

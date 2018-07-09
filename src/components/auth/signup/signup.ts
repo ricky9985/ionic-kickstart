@@ -1,12 +1,16 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, Input, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Subject} from "rxjs/Subject";
 
 @Component({
   selector: 'signup',
   templateUrl: 'signup.html'
 })
 export class SignupComponent {
-  @Output() component = new EventEmitter();
+  @Output() component = new Subject();
+  @Output() nextPage = new Subject();
+  @Input() data: boolean;
+
   signupForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -24,12 +28,12 @@ export class SignupComponent {
     })
   }
 
-  onSubmit(){
+  onSubmit() {
 
   }
 
   switchToSignIn() {
     console.log("signup clicked");
-    this.component.emit("signin");
+    this.component.next("signin");
   }
 }

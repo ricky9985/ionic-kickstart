@@ -34,9 +34,10 @@ export class AuthPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AuthPage');
-    this.authProvider.isPinSet().then(data => {
-      data.status ? this.loadComponent("pin", data.data) : this.loadComponent("signin", "");
-    });
+    // this.authProvider.isPinSet().then(status => {
+    //   status ? this.loadComponent("pin", status) : this.loadComponent("signin", "");
+    // });
+    this.loadComponent("pin", false);
   }
 
   loadComponent(componentName, componentValue) {
@@ -56,8 +57,9 @@ export class AuthPage {
       this.loadComponent(value, "");
     });
     this.componentRef.instance.nextPage.subscribe(value => {
-      this.navCtrl.setRoot(value);
-      this.destroyComponent();
+      console.log(value);
+      // this.navCtrl.setRoot(value);
+      // this.destroyComponent();
     })
   }
 

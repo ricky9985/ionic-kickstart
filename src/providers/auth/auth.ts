@@ -26,11 +26,17 @@ export class AuthProvider {
     }
   }
 
-  async pinLogin(formData) {
+  async pinLogin(enteredPin) {
     try {
-      console.log(formData);
-      return Promise.resolve({status: true, message: "Logged in."});
+      console.log(enteredPin);
+      let pin = await this.storage.get("pin");
+      if (enteredPin === pin) {
+        return Promise.resolve({status: true, message: "Logged in."});
+      } else {
+        return Promise.reject({status: false, message: "Incorrect pin."});
+      }
     } catch (error) {
+      return Promise.reject({status: false, message: "Cannot login."})
     }
   }
 
@@ -46,9 +52,9 @@ export class AuthProvider {
   async isPinSet() {
     let pin = await this.storage.get("pin");
     if (pin) {
-      return Promise.resolve({status: true, data: pin});
+      return Promise.resolve(true);
     } else {
-      return Promise.resolve({status: false, data: ""});
+      return Promise.resolve(false);
     }
   }
 
