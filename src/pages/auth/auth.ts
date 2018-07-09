@@ -9,6 +9,7 @@ import {NavController, NavParams} from 'ionic-angular';
 import {SigninComponent} from "../../components/auth/signin/signin";
 import {SignupComponent} from "../../components/auth/signup/signup";
 import {PinComponent} from "../../components/auth/pin/pin";
+import {AuthProvider} from "../../providers/auth/auth";
 
 const AuthMethods: Object = {
   signin: SigninComponent,
@@ -27,20 +28,23 @@ export class AuthPage {
   @ViewChild('messagecontainer', {read: ViewContainerRef}) entry: ViewContainerRef;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private componentFactoryResolver: ComponentFactoryResolver) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private componentFactoryResolver: ComponentFactoryResolver, private authProvider: AuthProvider) {
     this.title = "auth";
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AuthPage');
-    this.loadComponent("signin");
+    this.authProvider.isPinSet().then(data => {
+      data.status ? this.loadComponent("pin", data.data) : this.loadComponent("signin", "");
+    });
   }
 
-  loadComponent(value) {
-    console.log("loading component: ", value);
+  loadComponent(componentName, componentValue) {
+    console.log("loading component: ", componentName);
     this.entry.clear();
-    const factory = this.componentFactoryResolver.resolveComponentFactory(AuthMethods[value]);
+    const factory = this.componentFactoryResolver.resolveComponentFactory(AuthMethods[componentName]);
     this.componentRef = this.entry.createComponent(factory);
+    this.componentRef.instance.data = componentValue;
     console.log(this.componentRef);
     this.subscribeChange();
   }
@@ -49,8 +53,12 @@ export class AuthPage {
     this.componentRef.instance.component.subscribe(value => {
       console.log(value);
       this.destroyComponent();
-      this.loadComponent(value);
+      this.loadComponent(value, "");
     });
+    this.componentRef.instance.nextPage.subscribe(value => {
+      this.navCtrl.setRoot(value);
+      this.destroyComponent();
+    })
   }
 
   destroyComponent() {

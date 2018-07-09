@@ -25,6 +25,7 @@ export class SignupComponent {
   }
 
   onSubmit(){
+
   }
 
   switchToSignIn() {

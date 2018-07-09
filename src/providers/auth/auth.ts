@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpProvider} from '../http/http';
-import {LocalStorageProvider} from "../storage/localStorage";
+import {Storage} from "@ionic/storage";
 
 @Injectable()
 export class AuthProvider {
 
-  constructor(private httpProvider: HttpProvider, public localStorageProvider: LocalStorageProvider ) {
+  constructor(private httpProvider: HttpProvider, public storage: Storage) {
     console.log('Hello AuthProvider Provider');
   }
 
@@ -17,12 +17,38 @@ export class AuthProvider {
       let response = await this.httpProvider.postReq(loginUrl, formData);
       console.log(response);
       this.httpProvider.token = response['token'];
-      await this.localStorageProvider.setKey('token', response['token']);
-      await this.localStorageProvider.setKey('gstin', response['userData']['gstinList'][0]);
+      await this.storage.set('token', response['token']);
+      await this.storage.set('gstin', response['userData']['gstinList'][0]);
       return Promise.resolve(response['userData']['data']['firstName']);
-    } catch (e) {
+    } catch (error) {
       //todo: give appropriate error
       return Promise.reject("Invalid Credentials");
+    }
+  }
+
+  async pinLogin(formData) {
+    try {
+      console.log(formData);
+      return Promise.resolve({status: true, message: "Logged in."});
+    } catch (error) {
+    }
+  }
+
+  async setPin(pin: string) {
+    try {
+      await this.storage.set("pin", pin);
+      return Promise.resolve({status: true, message: "Pin set"});
+    } catch (error) {
+      return Promise.reject({status: false, message: "Cannot set Pin."});
+    }
+  }
+
+  async isPinSet() {
+    let pin = await this.storage.get("pin");
+    if (pin) {
+      return Promise.resolve({status: true, data: pin});
+    } else {
+      return Promise.resolve({status: false, data: ""});
     }
   }
 
