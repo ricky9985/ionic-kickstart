@@ -8,20 +8,26 @@ import {AuthPage} from "../pages/auth/auth";
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
+import {HttpClientModule} from "@angular/common/http";
 import {SigninComponent} from "../components/auth/signin/signin";
 import {SignupComponent} from "../components/auth/signup/signup";
+import {PinComponent} from "../components/auth/pin/pin";
 import {AuthProvider} from '../providers/auth/auth';
+import {HttpProvider} from "../providers/http/http";
+import {LocalStorageProvider} from "../providers/storage/localStorage";
 
 @NgModule({
   declarations: [
     MyApp,
     AuthPage,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    PinComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule,
     IonicStorageModule.forRoot({
       name : '_localStorage',
       driverOrder: ['sqlite', 'indexeddb', 'websql']
@@ -32,13 +38,16 @@ import {AuthProvider} from '../providers/auth/auth';
     MyApp,
     AuthPage,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    PinComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    HttpProvider,
+    LocalStorageProvider
   ]
 })
 export class AppModule {
