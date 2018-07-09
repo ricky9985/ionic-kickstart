@@ -8,6 +8,8 @@ import {AuthProvider} from '../../../providers/auth/auth';
 })
 export class SigninComponent {
   @Output() component = new EventEmitter();
+  @Output() nextPage = new EventEmitter();
+
   signinForm: FormGroup;
   res: any = {
     username: ''
@@ -30,8 +32,10 @@ export class SigninComponent {
       console.log("logging in");
       console.log(this.signinForm.getRawValue());
       let result = this.authProvider.login(this.signinForm.getRawValue());
-    } catch (e) {
-
+      this.nextPage.emit("pin");
+    } catch (error) {
+      //todo: handle error
+      console.log(error);
     }
   }
 

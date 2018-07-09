@@ -21,6 +21,7 @@ export class AuthProvider {
       await this.storage.set('gstin', response['userData']['gstinList'][0]);
       return Promise.resolve(response['userData']['data']['firstName']);
     } catch (error) {
+      console.log(error);
       //todo: give appropriate error
       return Promise.reject("Invalid Credentials");
     }
