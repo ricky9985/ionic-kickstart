@@ -1,4 +1,19 @@
 <!-- Generated template for the PinComponent component -->
 <div>
-  {{text}}
+  <ion-list *ngIf="!pinSet">
+    <ion-item>
+      <input [(ngModel)]="setPin1" maxlength="4" type="password">
+    </ion-item>
+    <ion-row justify-content-center margin-top>
+      <button margin-top ion-button (click)="setPin()" [disabled]="setPin1.length<4">Set Pin</button>
+    </ion-row>
+  </ion-list>
+  <ion-list *ngIf="pinSet">
+    <ion-item>
+      <input id="pin2"  [(ngModel)]="setPin2" maxlength="4" type="password" (ngModelChange)="getPin()">
+    </ion-item>
+    <ion-row justify-content-center margin-top>
+      <!--<button ion-button (click)="getPin()">LogIn</button>-->
+    </ion-row>
+  </ion-list>
 </div>

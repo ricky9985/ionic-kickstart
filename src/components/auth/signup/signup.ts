@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -6,6 +6,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   templateUrl: 'signup.html'
 })
 export class SignupComponent {
+  @Output() component = new EventEmitter();
+  @Output() dataForm = new EventEmitter();
   signupForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -21,5 +23,14 @@ export class SignupComponent {
       city: ['', Validators.required],
       state: ['', Validators.required]
     })
+  }
+
+  onSubmit(){
+    this.dataForm.emit({method : "signup", data: this.signupForm})
+  }
+
+  switchToSignIn() {
+    console.log("signup clicked");
+    this.component.emit("signin");
   }
 }

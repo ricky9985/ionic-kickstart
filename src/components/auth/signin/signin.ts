@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class SigninComponent {
   @Output() component = new EventEmitter();
+  @Output() dataForm = new EventEmitter();
   signinForm: FormGroup;
   res: any = {
     username: ''
@@ -26,9 +27,10 @@ export class SigninComponent {
 
   onLogin(ev) {
     console.log("logging in");
+    this.dataForm.emit({method: "signin", data: this.signinForm})
   }
 
-  signUp() {
+  switchToSignUp() {
     console.log("signup clicked");
     this.component.emit("signup");
   }

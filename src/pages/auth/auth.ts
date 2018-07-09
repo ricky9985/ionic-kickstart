@@ -8,6 +8,7 @@ import {
 import {NavController, NavParams} from 'ionic-angular';
 import {SigninComponent} from "../../components/auth/signin/signin";
 import {SignupComponent} from "../../components/auth/signup/signup";
+import {AuthProvider} from "../../providers/auth/auth";
 
 const AuthMethods: Object = {
   signin: SigninComponent,
@@ -25,7 +26,7 @@ export class AuthPage {
   @ViewChild('messagecontainer', {read: ViewContainerRef}) entry: ViewContainerRef;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private componentFactoryResolver: ComponentFactoryResolver) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private componentFactoryResolver: ComponentFactoryResolver, private authProvider :AuthProvider) {
     this.title = "auth";
   }
 
@@ -48,16 +49,20 @@ export class AuthPage {
       console.log(value);
       this.destroyComponent();
       this.loadComponent(value);
+    });
+    this.componentRef.instance.dataForm.subscribe(value=>{
+      this.handleUserInteractionData(value);
     })
   }
 
   destroyComponent() {
     this.componentRef.instance.component.unsubscribe();
+    this.componentRef.instance.dataForm.unsubscribe();
     this.componentRef.destroy();
   }
 
-  changeComponent(ev) {
+  async handleUserInteractionData(data) {
     console.log("hello");
-    console.log(ev);
+
   }
 }
