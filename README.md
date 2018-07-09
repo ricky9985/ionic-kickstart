@@ -1,9 +1,9 @@
-Project Template with following auth flows:
-Signin
-Signup
-PinSet
-PinLogin
-Environment setup
+Project Template with following auth flows:\
+*Signin\
+*Signup\
+*PinSet\
+*PinLogin\
+*Environment setup
 
 
 Build and Serve Commands:\
