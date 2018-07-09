@@ -8,11 +8,12 @@ import {
 import {NavController, NavParams} from 'ionic-angular';
 import {SigninComponent} from "../../components/auth/signin/signin";
 import {SignupComponent} from "../../components/auth/signup/signup";
-import {AuthProvider} from "../../providers/auth/auth";
+import {PinComponent} from "../../components/auth/pin/pin";
 
 const AuthMethods: Object = {
   signin: SigninComponent,
-  signup: SignupComponent
+  signup: SignupComponent,
+  pin: PinComponent
 };
 
 // @IonicPage()
@@ -26,7 +27,7 @@ export class AuthPage {
   @ViewChild('messagecontainer', {read: ViewContainerRef}) entry: ViewContainerRef;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private componentFactoryResolver: ComponentFactoryResolver, private authProvider :AuthProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private componentFactoryResolver: ComponentFactoryResolver) {
     this.title = "auth";
   }
 
@@ -50,19 +51,10 @@ export class AuthPage {
       this.destroyComponent();
       this.loadComponent(value);
     });
-    this.componentRef.instance.dataForm.subscribe(value=>{
-      this.handleUserInteractionData(value);
-    })
   }
 
   destroyComponent() {
     this.componentRef.instance.component.unsubscribe();
-    this.componentRef.instance.dataForm.unsubscribe();
     this.componentRef.destroy();
-  }
-
-  async handleUserInteractionData(data) {
-    console.log("hello");
-
   }
 }

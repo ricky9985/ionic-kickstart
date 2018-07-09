@@ -7,7 +7,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class SignupComponent {
   @Output() component = new EventEmitter();
-  @Output() dataForm = new EventEmitter();
   signupForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -26,7 +25,6 @@ export class SignupComponent {
   }
 
   onSubmit(){
-    this.dataForm.emit({method : "signup", data: this.signupForm})
   }
 
   switchToSignIn() {

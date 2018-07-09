@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthProvider} from '../../../providers/auth/auth';
 
 @Component({
   selector: 'signin',
@@ -7,13 +8,12 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class SigninComponent {
   @Output() component = new EventEmitter();
-  @Output() dataForm = new EventEmitter();
   signinForm: FormGroup;
   res: any = {
     username: ''
   };
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authProvider: AuthProvider) {
     console.log('Hello SigninComponent Component');
     this.initLoginForm();
   }
@@ -26,8 +26,13 @@ export class SigninComponent {
   }
 
   onLogin(ev) {
-    console.log("logging in");
-    this.dataForm.emit({method: "signin", data: this.signinForm})
+    try {
+      console.log("logging in");
+      console.log(this.signinForm.getRawValue());
+      let result = this.authProvider.login(this.signinForm.getRawValue());
+    } catch (e) {
+
+    }
   }
 
   switchToSignUp() {
