@@ -1,12 +1,17 @@
-Project Template with following auth flows:\
-*Signin\
-*Signup\
-*PinSet\
-*PinLogin\
+Project Template with following auth flows:
+
+*Signin
+
+*Signup
+
+*PinSet
+
+*PinLogin
+
 *Environment setup
 
 
-Build and Serve Commands:\
+Build and Serve Commands:
 dev: 
 serve= ionic serve;
 build= ionic build
