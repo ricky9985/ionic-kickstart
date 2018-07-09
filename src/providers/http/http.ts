@@ -1,7 +1,8 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-
-const remoteUrl = 'https://biz.dev.coniferlabs.in:4001/';
+import {ENV} from '@app/env';
+const RemoteUrl: string = ENV.remoteUrl;
+// const remoteUrl = 'https://biz.dev.coniferlabs.in:4001/';
 
 @Injectable()
 export class HttpProvider {
@@ -11,7 +12,7 @@ export class HttpProvider {
     console.log('Hello HttpProvider Provider');
     // this.remoteUrl = ENV['remoteUrl'];
 
-    console.log(remoteUrl);
+    console.log(RemoteUrl);
   }
 
   async getReq(subUrl: string) {
@@ -20,7 +21,7 @@ export class HttpProvider {
       let headers = new HttpHeaders();
       if (this.token != null)
         headers = headers.set('x-access-token', this.token);
-      let url = remoteUrl + subUrl;
+      let url = RemoteUrl + subUrl;
       this.http.get(url, {headers: headers}).subscribe(
         data => {
           console.log(data);
@@ -38,7 +39,7 @@ export class HttpProvider {
       let headers = new HttpHeaders();
       if (this.token != null)
         headers = headers.set('x-access-token', this.token);
-      let url = remoteUrl + subUrl;
+      let url = RemoteUrl + subUrl;
       this.http.post(url, body, {headers: headers}).subscribe(
         data => {
           console.log(data);

@@ -29,13 +29,15 @@ export class SigninComponent {
     })
   }
 
-  onLogin(ev) {
+  async onLogin(ev) {
     try {
       console.log("logging in");
       console.log(this.signinForm.getRawValue());
-      let result = this.authProvider.login(this.signinForm.getRawValue());
-    } catch (e) {
-
+      let result = await this.authProvider.login(this.signinForm.getRawValue());
+      this.component.next("pin");
+    } catch (error) {
+      //todo: handle error
+      console.log(error);
     }
   }
 

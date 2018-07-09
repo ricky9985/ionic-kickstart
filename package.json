@@ -4,10 +4,22 @@
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
   "private": true,
+  "config": {
+    "ionic_webpack": "./config/webpack.config.js"
+  },
   "scripts": {
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
+    "ionic:build:demo": "set MY_ENV=demo&& ionic-app-scripts build",
+    "ionic:serve:demo": "set MY_ENV=demo&& ionic-app-scripts serve",
+    "ionic:build:prod": "ionic-app-scripts build --prod",
+    "ionic:serve:prod": "set MY_ENV=prod&&ionic-app-scripts serve",
+    "ionic:build:local": "set MY_ENV=local&&ionic-app-scripts build",
+    "ionic:serve:local": "set MY_ENV=local&&ionic-app-scripts serve",
+    "ionic:build:dev:android": "ionic cordova build android --release",
+    "ionic:build:demo:android": "set MY_ENV=demo&&ionic cordova build android --prod --release",
+    "ionic:build:prod:android": "set MY_ENV=prod&&ionic cordova build android --prod --release",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve"
   },

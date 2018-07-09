@@ -48,4 +48,9 @@ export class PinComponent implements OnInit {
       console.log(error);
     }
   }
+
+  async logOut(){
+    await this.authProvider.clearPin();
+    this.component.next("signin");
+  }
 }

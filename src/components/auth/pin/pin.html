@@ -13,10 +13,16 @@
   </ion-list>
   <ion-list *ngIf="data">
     <ion-item>
-      <input id="pin2" [(ngModel)]="setPin2" maxlength="4" type="password" (ngModelChange)="checkPin()" placeholder="Pin">
+      <input id="pin2" [(ngModel)]="setPin2" maxlength="4" type="password" (ngModelChange)="checkPin()"
+             placeholder="Pin">
     </ion-item>
     <ion-row justify-content-center margin-top>
-      <!--<button ion-button (click)="getPin()">LogIn</button>-->
+      <ion-col>
+        <button ion-button (click)="logOut()">Reset Pin</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="logOut()">LogOut</button>
+      </ion-col>
     </ion-row>
   </ion-list>
 </div>
