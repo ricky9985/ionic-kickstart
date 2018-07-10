@@ -27,6 +27,7 @@ export class SignupComponent {
       username: ['', [Validators.required, Validators.email]],
       contact: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10)]],
       companyName: ['', [Validators.required, Validators.pattern(/^[A-Za-z\\.\\-]*$/)]],
+      gstin: ['', [Validators.required, Validators.pattern(/^(((0)[1-9])|((1)[0-9])|((?!28)((2)[0-9]))|((3)[0-7])|(97))([a-zA-Z]){5}([0-9]){4}([a-zA-Z])([a-zA-Z0-9])([zZ])([a-zA-Z0-9])?$/)]],
       city: ['', Validators.required],
       state: ['', Validators.required]
     })
@@ -35,11 +36,10 @@ export class SignupComponent {
   async formSubmit() {
     try {
       this.loaderProvider.showLoader("");
-      // let respMessage = await this.authProvider.sendOtp(this.signupForm.controls.contact.value);
+      let respMessage = await this.authProvider.sendOtp(this.signupForm.controls.contact.value);
       //todo add a toaster here respMessage
-      // this.toggleForm();
-      this.nextPage.next("otp");
-      // this.loaderProvider.hideLoader();
+      this.toggleForm();
+      this.loaderProvider.hideLoader();
     } catch (error) {
       this.loaderProvider.hideLoader();
       //todo add error a toaster here
@@ -50,9 +50,9 @@ export class SignupComponent {
     this.loaderProvider.showLoader("");
     setTimeout(() => {
       this.changeForm = !this.changeForm;
+      this.otp = null;
       this.loaderProvider.hideLoader();
     }, 1000);
-
   }
 
   signup() {
@@ -64,6 +64,7 @@ export class SignupComponent {
       this.loaderProvider.showLoader("");
       let respMessage = await this.authProvider.verifyOtp(this.signupForm.controls.contact.value, this.otp);
       //todo add a toaster here respMessage
+      console.log(respMessage);
       this.loaderProvider.hideLoader();
     } catch (error) {
       this.loaderProvider.hideLoader();
@@ -82,7 +83,7 @@ export class SignupComponent {
   }
 
   switchToSignIn() {
-    console.log("signup clicked");
+    console.log("signin clicked");
     this.component.next("signin");
   }
 }

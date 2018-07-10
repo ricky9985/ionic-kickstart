@@ -1,4 +1,12 @@
 <div>
+  <div class="heading">
+    <h3 id="heading-signup">SignUp</h3>
+  </div>
+  <div id="back-button" *ngIf="!changeForm">
+    <button type="button" clear (click)="toggleForm()" ion-button primary>
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </div>
   <div id="signup-form" *ngIf="changeForm">
     <form [formGroup]="signupForm">
       <ion-item-group>
@@ -12,6 +20,9 @@
           <ion-input type="text" formControlName="companyName" placeholder="Company Name"></ion-input>
         </ion-item>
         <ion-item>
+          <ion-input type="text" formControlName="gstin" placeholder="GSTIN"></ion-input>
+        </ion-item>
+        <ion-item>
           <ion-input type="text" formControlName="city" placeholder="City"></ion-input>
         </ion-item>
         <ion-item>
@@ -20,9 +31,15 @@
       </ion-item-group>
       <div class="wrap">
         <ion-row justify-content-center style="margin-top:40px;">
-          <button type="button" login-animation (click)="formSubmit()" ion-button primary
+          <button type="button" clear login-animation (click)="formSubmit()" ion-button primary
                   [disabled]="signupForm.invalid">
             Signup
+          </button>
+        </ion-row>
+        <ion-row justify-content-center style="margin-top:6em;">
+          <span class="passive">Already Registered?&nbsp;</span>
+          <button ion-button style="font-size: 1rem;" clear (click)="switchToSignIn()">
+            Signin
           </button>
         </ion-row>
       </div>
@@ -31,14 +48,17 @@
   <div *ngIf="!changeForm" id="otp">
     <ion-row>
       <ion-item>
-          <input id="pin2" [(ngModel)]="otp" maxlength="6" type="number" placeholder="OTP">
+        <input id="pin2" [(ngModel)]="otp" maxlength="6" type="number" placeholder="OTP">
       </ion-item>
     </ion-row>
     <ion-row justify-content-center margin-top>
-        <button ion-button style="font-size: 1rem;" clear (click)="resendOtp()"><span style="color:rgba(0,0,0,0.4);">Did not receive Otp?&nbsp;</span> Resend</button>
+      <span class="passive">Did not receive Otp?&nbsp;</span>
+      <button ion-button style="font-size: 1rem;" clear (click)="resendOtp()">
+        Resend
+      </button>
     </ion-row>
     <ion-row justify-content-center margin-top>
-        <button ion-button (click)="verifyOtp()">Verify</button>
+      <button ion-button (click)="verifyOtp()">Verify</button>
     </ion-row>
   </div>
 </div>

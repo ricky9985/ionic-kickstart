@@ -6,7 +6,7 @@
     </div>
     <div class="signin-form">
       <form [formGroup]="signinForm">
-        <ion-item-group>
+        <ion-item-group style="margin-top:4em;">
           <ion-item>
             <ion-input type="email" formControlName="username" placeholder="Email"></ion-input>
           </ion-item>
@@ -15,27 +15,20 @@
           </ion-item>
         </ion-item-group>
         <div class="wrap">
-          <ion-row justify-content-center style="margin-top:40px;">
-            <button type="button" login-animation (click)="onLogin($event)" ion-button primary
+          <ion-row justify-content-center style="margin-top:5em;">
+            <button type="button" (click)="onLogin($event)" ion-button primary
                     [disabled]="signinForm.invalid">
               login
             </button>
-            <button type="button" login-animation (click)="switchToSignUp()" ion-button primary>
+          </ion-row>
+          <ion-row justify-content-center style="margin-top:6em;">
+            <span class="passive">Not Registered?&nbsp;</span>
+            <button type="button" style="font-size: 1rem;color:white;" clear (click)="switchToSignUp()" ion-button
+                    primary>
               Signup
             </button>
           </ion-row>
-          <ion-row justify-content-center>
-            <ion-icon name="checkmark"></ion-icon>
-          </ion-row>
-          <ion-row justify-content-center>
-            <svg width="66px" height="66px">
-            </svg>
-          </ion-row>
-          <ion-row text-center ion-text color="dark-text" *ngIf="res.username!==''" class="username">
-            <ion-label>Hi {{res.username}}</ion-label>
-          </ion-row>
         </div>
-        <div class="page"></div>
       </form>
     </div>
   </div>

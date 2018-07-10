@@ -1,9 +1,9 @@
 signup {
-  & > div{
+  & > div {
     margin-top: 10em;
   }
-  #signup-form{
-    .item-md.item-block .item-inner{
+  #signup-form {
+    .item-md.item-block .item-inner {
       margin-right: 1em;
     }
     .item-md, .item-wp, .item-ios {
@@ -16,5 +16,17 @@ signup {
   }
   #otp {
     @extend %transparent-input;
+    margin-top: 17em;
+  }
+  #heading-signup {
+    width: 100%;
+    color: black;
+    position: absolute;
+    top: 2em;
+  }
+  #back-button {
+    position: absolute;
+    top: 2px;
+    left: 2px;
   }
 }

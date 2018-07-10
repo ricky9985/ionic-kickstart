@@ -19,20 +19,24 @@ page-auth {
     font-weight: 500;
     text-align: center;
   }
-
-  %background-image{
+  .passive {
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 1rem;
+    margin-top: 1.5rem;
+  }
+  %background-image {
     background: linear-gradient(to bottom right, #0d7bca, #01b0e5);
-    &:after {
-      content: '';
-      background: url("../assets/imgs/bg-pattern.png");
-      opacity: 0.5;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
+    //&:after {
+    //  content: '';
+    //  background: url("../assets/imgs/bg-pattern.png");
+    //  opacity: 0.5;
+    //  position: absolute;
+    //  top: 0;
+    //  left: 0;
+    //  width: 100%;
+    //  height: 100%;
+    //  z-index: 0;
+    //}
   }
   %transparent-input {
     input {
@@ -43,7 +47,7 @@ page-auth {
       text-align: center;
       padding-left: 20px;
       background-color: transparent;
-      color:black;
+      color: black;
     }
     input::placeholder {
       text-align: center;

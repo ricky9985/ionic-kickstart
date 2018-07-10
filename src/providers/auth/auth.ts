@@ -82,7 +82,7 @@ export class AuthProvider {
 
   async verifyOtp(contact: number, otp: number) {
     try {
-      let url = "service/sendOtp?mobile=" + contact + "&otp=" + otp;
+      let url = "service/verifyOtp?mobile=" + contact + "&otp=" + otp;
       let res = await this.httpProvider.getReq(url);
       if (res['status']) {
         return Promise.resolve(res["message"])
