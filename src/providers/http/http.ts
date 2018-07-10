@@ -29,7 +29,7 @@ export class HttpProvider {
         },
         error => {
           console.log(error);
-          reject(error);
+          reject("Something went wrong. Please contact customer care.");
         });
     })
   }

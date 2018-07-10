@@ -59,7 +59,42 @@ export class AuthProvider {
     }
   }
 
-  async clearPin(){
+  async clearPin() {
     await this.storage.remove("pin");
+  }
+
+  async sendOtp(contact: number, resend: boolean = false) {
+    try {
+      let url = "service/sendOtp?mobile=" + contact;
+      if (resend) {
+        url += "&resend=true";
+      }
+      let res = await this.httpProvider.getReq(url);
+      if (res['status']) {
+        return Promise.resolve("OTP sent.")
+      } else {
+        return Promise.reject("Unable to send OTP.");
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  async verifyOtp(contact: number, otp: number) {
+    try {
+      let url = "service/sendOtp?mobile=" + contact + "&otp=" + otp;
+      let res = await this.httpProvider.getReq(url);
+      if (res['status']) {
+        return Promise.resolve(res["message"])
+      } else {
+        return Promise.reject(res["message"]);
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  async signUp(signUpForm) {
+    console.log("signing up");
   }
 }

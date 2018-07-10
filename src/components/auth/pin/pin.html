@@ -8,7 +8,7 @@
       <input [(ngModel)]="setPin2" maxlength="4" type="password" placeholder="Confirm">
     </ion-item>
     <ion-row justify-content-center margin-top>
-      <button margin-top ion-button (click)="setPin()" [disabled]="setPin1.length<4">Set Pin</button>
+      <button margin-top ion-button (click)="setPin()" [disabled]="setPin1.length<4 || setPin2.length<4">Set Pin</button>
     </ion-row>
   </ion-list>
   <ion-list *ngIf="data">

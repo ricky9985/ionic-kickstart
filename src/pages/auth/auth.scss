@@ -1,17 +1,6 @@
 page-auth {
   ion-content {
-    background: linear-gradient(to bottom right, #0d7bca, #01b0e5);
-    &:after {
-      content: '';
-      background: url("../assets/imgs/bg-pattern.png");
-      opacity: 0.5;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
+
   }
   .logo {
     height: 150px;
@@ -29,5 +18,49 @@ page-auth {
     color: #fff;
     font-weight: 500;
     text-align: center;
+  }
+
+  %background-image{
+    background: linear-gradient(to bottom right, #0d7bca, #01b0e5);
+    &:after {
+      content: '';
+      background: url("../assets/imgs/bg-pattern.png");
+      opacity: 0.5;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+  }
+  %transparent-input {
+    input {
+      width: 100%;
+      border: none;
+      font-size: 3rem;
+      letter-spacing: 20px;
+      text-align: center;
+      padding-left: 20px;
+      background-color: transparent;
+      color:black;
+    }
+    input::placeholder {
+      text-align: center;
+      font-size: 1.3rem;
+      color: rgba(0, 0, 0, 0.7);
+      letter-spacing: 0px;
+    }
+    .item-md, .item-wp, .item-ios {
+      padding-left: 0;
+    }
+  }
+}
+
+.loader .loading-wrapper {
+  background-color: transparent;
+  box-shadow: none;
+  .spinner-crescent circle {
+    stroke: white;
   }
 }

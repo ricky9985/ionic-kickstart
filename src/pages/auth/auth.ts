@@ -9,7 +9,6 @@ import {NavController, NavParams} from 'ionic-angular';
 import {SigninComponent} from "../../components/auth/signin/signin";
 import {SignupComponent} from "../../components/auth/signup/signup";
 import {PinComponent} from "../../components/auth/pin/pin";
-import {AuthProvider} from "../../providers/auth/auth";
 
 const AuthMethods: Object = {
   signin: SigninComponent,
@@ -20,7 +19,11 @@ const AuthMethods: Object = {
 // @IonicPage()
 @Component({
   selector: 'page-auth',
-  templateUrl: 'auth.html',
+  template: `
+    <ion-content>
+      <template #messagecontainer>
+      </template>
+    </ion-content>`
 })
 export class AuthPage {
   title: string;
@@ -28,16 +31,16 @@ export class AuthPage {
   @ViewChild('messagecontainer', {read: ViewContainerRef}) entry: ViewContainerRef;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private componentFactoryResolver: ComponentFactoryResolver, private authProvider: AuthProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private componentFactoryResolver: ComponentFactoryResolver) {
     this.title = "auth";
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AuthPage');
-    this.authProvider.isPinSet().then(status => {
-      status ? this.loadComponent("pin", status) : this.loadComponent("signin", "");
-    });
-    // this.loadComponent("pin", false);
+    // this.authProvider.isPinSet().then(status => {
+    //   status ? this.loadComponent("pin", status) : this.loadComponent("signin", "");
+    // });
+    this.loadComponent("signup", false);
   }
 
   loadComponent(componentName, componentValue) {
@@ -59,8 +62,8 @@ export class AuthPage {
     this.componentRef.instance.nextPage.subscribe(value => {
       console.log(value);
       //todo uncomment below lines to enable navigation
-      // this.navCtrl.setRoot(value);
-      // this.destroyComponent();
+        // this.navCtrl.setRoot(value);
+        // this.destroyComponent();
     })
   }
 

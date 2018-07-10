@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
+import { OtpComponent } from './auth/otp/otp';
 @NgModule({
-	declarations: [],
+	declarations: [OtpComponent],
 	imports: [],
-	exports: []
+	exports: [OtpComponent]
 })
 export class ComponentsModule {}

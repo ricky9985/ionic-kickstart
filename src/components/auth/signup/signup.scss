@@ -1,3 +1,20 @@
 signup {
-
+  & > div{
+    margin-top: 10em;
+  }
+  #signup-form{
+    .item-md.item-block .item-inner{
+      margin-right: 1em;
+    }
+    .item-md, .item-wp, .item-ios {
+      background-color: transparent;
+      color: black;
+    }
+    input.text-input::placeholder {
+      color: rgba(0, 0, 0, 0.7);
+    }
+  }
+  #otp {
+    @extend %transparent-input;
+  }
 }

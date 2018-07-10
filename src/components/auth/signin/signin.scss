@@ -1,3 +1,6 @@
 signin {
-
+  #signin {
+    @extend %background-image;
+    height: 100%;
+  }
 }

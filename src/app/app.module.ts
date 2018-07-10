@@ -14,7 +14,8 @@ import {SignupComponent} from "../components/auth/signup/signup";
 import {PinComponent} from "../components/auth/pin/pin";
 import {AuthProvider} from '../providers/auth/auth';
 import {HttpProvider} from "../providers/http/http";
-import { ToasterProvider } from '../providers/toaster/toaster';
+import {ToasterProvider} from '../providers/toaster/toaster';
+import {LoaderProvider} from "../providers/toaster/loader";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { ToasterProvider } from '../providers/toaster/toaster';
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     IonicStorageModule.forRoot({
-      name : '_localStorage',
+      name: '_localStorage',
       driverOrder: ['sqlite', 'indexeddb', 'websql']
     })
   ],
@@ -47,7 +48,8 @@ import { ToasterProvider } from '../providers/toaster/toaster';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     HttpProvider,
-    ToasterProvider
+    ToasterProvider,
+    LoaderProvider
   ]
 })
 export class AppModule {

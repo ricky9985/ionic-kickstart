@@ -1,20 +1,6 @@
 pin {
-  input{
-    width: 100%;
-    border: none;
-    font-size: 3rem;
-    letter-spacing: 20px;
-    text-align: center;
-    padding-left: 20px;
-    background-color: transparent;
-  }
-  input::placeholder {
-    text-align: center;
-    font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.7);
-    letter-spacing: 0px;
-  }
-  .item-md, .item-wp,.item-ios{
-    padding-left:0;
+  @extend %transparent-input;
+  & > div{
+    margin-top: 10em;
   }
 }
