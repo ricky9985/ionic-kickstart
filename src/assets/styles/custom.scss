@@ -1,0 +1,157 @@
+/////////////////
+//Header Styles//
+/////////////////
+
+ion-header.header.header-md::after, ion-header.header.header-wp::after, ion-header.header.header-ios::after {
+  background-image: none;
+}
+
+ion-header {
+  ion-navbar {
+    .toolbar-background.toolbar-background-md {
+      background: transparent;
+    }
+  }
+}
+
+ion-header {
+  font-family: 'Poppins', 'Roboto', sans-serif;
+}
+
+ion-app.md [padding] .scroll-content {
+  padding: 0 16px 16px;
+}
+
+//////////////////
+//Heading Styles//
+//////////////////
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', 'Roboto', sans-serif !important;
+}
+
+/////////////////
+//Button Styles//
+/////////////////
+
+button.button-md:not(.button-clear) {
+  border-radius: 18px;
+  color: color($colors, primary);
+  background-color: #fff;
+  @include button-shadow;
+  font-family: 'Poppins', 'Roboto', sans-serif;
+}
+
+button.button-md.activated {
+  background-color: #fff;
+  //box-shadow:none;
+}
+
+///////////////
+//Card Styles//
+///////////////
+
+ion-card.card.card-md, ion-card.card.card-wp, ion-card.card.card-ios {
+  @include card-shadow;
+  @include card-radius;
+  background-color: rgb(255, 255, 255);
+  padding: 12px;
+}
+
+////////////////////////
+//Super Tabs Animation//
+////////////////////////
+
+.animate-loader {
+  pointer-events: none;
+  animation: pulse 1s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+///////////////////
+//Chart Container//
+///////////////////
+
+.chart-container {
+  position: relative;
+  height: 100%;
+}
+
+/////////////
+//Side Menu//
+/////////////
+
+div.menu-inner {
+  .list-md .item-block .item-inner {
+    border: none;
+  }
+  .active {
+    color: color($colors, primary);
+  }
+}
+
+///////////////////////
+//Action Sheet Button//
+///////////////////////
+
+.action-sheet-md, .action-sheet-wp, .action-sheet-ios {
+  .action-sheet-button.active {
+    color: color($colors, primary);
+  }
+  .action-sheet-button.cancel {
+    color: red;
+  }
+}
+
+//////////
+//Toastr//
+//////////
+
+.toast-md {
+  .toast-wrapper {
+    @include card-radius;
+    width: 95%;
+    background-color:transparent;
+    .toast-container{
+      margin-bottom:10px;
+      border-radius:10px;
+    }
+  }
+  .toast-message, .toast-button {
+    color: #222;
+  }
+}
+
+.toast-md.toast-error {
+  .toast-wrapper {
+    .toast-container{
+      background-color: #ffcdd2;
+    }
+  }
+}
+.toast-md.toast-success {
+  .toast-wrapper {
+    .toast-container{
+      background-color: #c8e6c9;
+    }
+  }
+}
+.toast-md.toast-info {
+  .toast-wrapper {
+    .toast-container{
+      background-color: #bbdefb;
+    }
+  }
+}
+
