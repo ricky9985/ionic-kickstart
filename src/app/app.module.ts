@@ -14,8 +14,8 @@ import {SignupComponent} from "../components/auth/signup/signup";
 import {PinComponent} from "../components/auth/pin/pin";
 import {AuthProvider} from '../providers/auth/auth';
 import {HttpProvider} from "../providers/http/http";
-import {ToasterProvider} from '../providers/toaster/toaster';
-import {LoaderProvider} from "../providers/toaster/loader";
+import {LoaderProvider} from "../providers/toast/loader";
+import {ToastProvider} from '../providers/toast/toast';
 
 @NgModule({
   declarations: [
@@ -48,8 +48,8 @@ import {LoaderProvider} from "../providers/toaster/loader";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     HttpProvider,
-    ToasterProvider,
-    LoaderProvider
+    LoaderProvider,
+    ToastProvider
   ]
 })
 export class AppModule {

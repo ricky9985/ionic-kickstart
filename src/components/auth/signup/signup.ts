@@ -2,7 +2,7 @@ import {Component, Input, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subject} from "rxjs/Subject";
 import {AuthProvider} from "../../../providers/auth/auth";
-import {LoaderProvider} from "../../../providers/toaster/loader";
+import {LoaderProvider} from "../../../providers/toast/loader";
 
 @Component({
   selector: 'signup',
