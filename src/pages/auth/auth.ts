@@ -32,7 +32,7 @@ export class AuthPage {
   @ViewChild('messagecontainer', {read: ViewContainerRef}) entry: ViewContainerRef;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private componentFactoryResolver: ComponentFactoryResolver, authProvider: AuthProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private componentFactoryResolver: ComponentFactoryResolver, private authProvider: AuthProvider) {
     this.title = "auth";
   }
 
